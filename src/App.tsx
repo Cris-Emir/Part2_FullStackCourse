@@ -7,7 +7,20 @@ type ButtonProps = {
 };
 
 const Button = ({ handleClick, text }: ButtonProps) => (
-  <button onClick={handleClick}>{text}</button>
+  <button
+    onClick={handleClick}
+    style={{
+      padding: "10px 20px",
+      margin: "5px",
+      backgroundColor: "#4CAF50",
+      color: "white",
+      border: "none",
+      borderRadius: "5px",
+      cursor: "pointer",
+    }}
+  >
+    {text}
+  </button>
 );
 
 const App = () => {
@@ -45,14 +58,14 @@ const App = () => {
 
   return (
     <div>
-      <h1>give feedback</h1>
+      <h1 style={{ color: "blueviolet", textAlign: "left" }}>give feedback</h1>
       <div>
         <Button handleClick={addGoodComment} text="good" />
         <Button handleClick={addNeutralComment} text="neutral" />
         <Button handleClick={addBadComment} text="bad" />
       </div>
       
-      <h1>statistics</h1>
+      <h1 style={{ color: "blueviolet", textAlign: "left" }}>statistics</h1>
       <Statistics
         good={good}
         neutral={neutral}

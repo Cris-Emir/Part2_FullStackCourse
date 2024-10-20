@@ -1,5 +1,3 @@
-import React from 'react';
-
 type StatisticsProps = {
   good: number;
   neutral: number;
@@ -15,31 +13,31 @@ const Statistics = ({ good, neutral, bad, allComments, finalAverage, positive }:
     }
 
     return (
-        <table>
+        <table style={{ borderCollapse: 'collapse', width: '100%' }}>
             <tbody>
                 <tr>
-                    <td>Good</td>
-                    <td>{good}</td>
+                    <td style={{ border: '1px solid black', padding: '8px' }}>Good</td>
+                    <td style={{ border: '1px solid black', padding: '8px' }}>{good}</td>
                 </tr>
                 <tr>
-                    <td>Neutral</td>
-                    <td>{neutral}</td>
+                    <td style={{ border: '1px solid black', padding: '8px' }}>Neutral</td>
+                    <td style={{ border: '1px solid black', padding: '8px' }}>{neutral}</td>
                 </tr>
                 <tr>
-                    <td>Bad</td>
-                    <td>{bad}</td>
+                    <td style={{ border: '1px solid black', padding: '8px' }}>Bad</td>
+                    <td style={{ border: '1px solid black', padding: '8px' }}>{bad}</td>
                 </tr>
                 <tr>
-                    <td>All</td>
-                    <td>{allComments}</td>
+                    <td style={{ border: '1px solid black', padding: '8px' }}>All</td>
+                    <td style={{ border: '1px solid black', padding: '8px' }}>{allComments}</td>
                 </tr>
                 <tr>
-                    <td>Average</td>
-                    <td>{finalAverage}</td>
+                    <td style={{ border: '1px solid black', padding: '8px' }}>Average</td>
+                    <td style={{ border: '1px solid black', padding: '8px' }}>{finalAverage}</td>
                 </tr>
                 <tr>
-                    <td>Positive</td>
-                    <td>{positive.toFixed(2)} %</td>
+                    <td style={{ border: '1px solid black', padding: '8px' }}>Positive</td>
+                    <td style={{ border: '1px solid black', padding: '8px' }}>{positive.toFixed(2)} %</td>
                 </tr>
             </tbody>
         </table>
