@@ -1,13 +1,13 @@
 import { useState } from "react";
+import Statistics from "./components/Statistics";
 
-const Button = (props) => (
-  <button onClick={props.handleClick}>{props.text}</button>
-);
+type ButtonProps = {
+  handleClick: () => void;
+  text: string;
+};
 
-const Display = (props) => (
-  <div>
-    {props.txt} {props.value}
-  </div>
+const Button = ({ handleClick, text }: ButtonProps) => (
+  <button onClick={handleClick}>{text}</button>
 );
 
 const App = () => {
@@ -18,48 +18,49 @@ const App = () => {
   const [positive, setPositive] = useState(0);
 
   const addGoodComment = () => {
-    console.log("Good value:", good);
-    setAllComments(allComments + 1);
-    setGood(good + 1);
-
-    setPositive((good * 100) / allComments);
+    const newAllComments = allComments + 1;
+    const newGood = good + 1;
+    setAllComments(newAllComments);
+    setGood(newGood);
+    setPositive((newGood * 100) / newAllComments);
   };
 
   const addNeutralComment = () => {
-    console.log("Neutral value:", neutral);
-    setAllComments(allComments + 1);
+    const newAllComments = allComments + 1;
+    setAllComments(newAllComments);
     setNeutral(neutral + 1);
-
-    setPositive((good * 100) / allComments);
+    setPositive((good * 100) / newAllComments);
   };
 
   const addBadComment = () => {
-    console.log("Bad value:", bad);
-    setAllComments(allComments + 1);
-    setBad(bad + 1);
-
-    setPositive((good * 100) / allComments);
+    const newAllComments = allComments + 1;
+    const newBad = bad + 1;
+    setAllComments(newAllComments);
+    setBad(newBad);
+    setPositive((good * 100) / newAllComments);
   };
 
   const calculateAverage = good * 1 + neutral * 0 + bad * -1;
-  const finalAverage = calculateAverage / allComments;
+  const finalAverage = allComments ? calculateAverage / allComments : 0;
 
   return (
     <div>
       <h1>give feedback</h1>
       <div>
-        <Button handleClick={() => addGoodComment()} text="good" />
-        <Button handleClick={() => addNeutralComment()} text="neutral" />
-        <Button handleClick={() => addBadComment()} text="bad" />
+        <Button handleClick={addGoodComment} text="good" />
+        <Button handleClick={addNeutralComment} text="neutral" />
+        <Button handleClick={addBadComment} text="bad" />
       </div>
-
-      <h1>stadistics</h1>
-      <Display txt="good" value={good} />
-      <Display txt="neutral" value={neutral} />
-      <Display txt="bad" value={bad} />
-      <Display txt="all" value={allComments} />
-      <Display txt="average" value={finalAverage} />
-      <Display txt="positive" value={positive} />
+      
+      <h1>statistics</h1>
+      <Statistics
+        good={good}
+        neutral={neutral}
+        bad={bad}
+        allComments={allComments}
+        finalAverage={finalAverage}
+        positive={positive}
+      />
     </div>
   );
 };
